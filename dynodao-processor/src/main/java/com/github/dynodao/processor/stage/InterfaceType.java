@@ -17,7 +17,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor(access = AccessLevel.PRIVATE)
 public enum InterfaceType {
 
-    CREATE(DynoDaoCreateTable.class),
+    CREATE_TABLE(DynoDaoCreateTable.class),
     SCAN(DynoDaoScan.class),
     LOAD(DynoDaoLoad.class),
     QUERY(DynoDaoQuery.class);

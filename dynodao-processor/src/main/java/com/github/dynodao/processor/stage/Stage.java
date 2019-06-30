@@ -66,7 +66,7 @@ public final class Stage {
      * @return <tt>this</tt>
      */
     public Stage addUser(StageTypeSpec stage) {
-        interfaceTypes.add(InterfaceType.CREATE);
+        interfaceTypes.add(InterfaceType.CREATE_TABLE);
         targetUsingIndexes.add(stage);
         return this;
     }

@@ -59,7 +59,7 @@ class InterfaceTypeTest extends AbstractUnitTest {
     @Test
     void getInterfaceClass_onlyUseCase_returnsCorrectClass() {
         Map<InterfaceType, Class<?>> expectedInterfaceClasses = new EnumMap<>(InterfaceType.class);
-        expectedInterfaceClasses.put(InterfaceType.CREATE, DynoDaoCreateTable.class);
+        expectedInterfaceClasses.put(InterfaceType.CREATE_TABLE, DynoDaoCreateTable.class);
         expectedInterfaceClasses.put(InterfaceType.SCAN, DynoDaoScan.class);
         expectedInterfaceClasses.put(InterfaceType.LOAD, DynoDaoLoad.class);
         expectedInterfaceClasses.put(InterfaceType.QUERY, DynoDaoQuery.class);

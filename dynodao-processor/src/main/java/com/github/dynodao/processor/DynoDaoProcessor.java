@@ -12,6 +12,7 @@ import com.github.dynodao.processor.stage.KeyLengthType;
 import com.github.dynodao.processor.stage.Stage;
 import com.github.dynodao.processor.stage.StageTypeSpec;
 import com.github.dynodao.processor.stage.StageTypeSpecFactory;
+import com.github.dynodao.processor.stage.operation.StagedBuilder;
 import com.google.auto.service.AutoService;
 
 import javax.annotation.processing.AbstractProcessor;
@@ -38,6 +39,8 @@ import static java.util.stream.Collectors.toSet;
 @SupportedSourceVersion(SourceVersion.RELEASE_8)
 @SupportedAnnotationTypes("com.github.dynodao.annotation.DynoDaoSchema")
 public class DynoDaoProcessor extends AbstractProcessor {
+
+    private StagedBuilder sb;
 
     @Inject ProcessorContext processorContext;
     @Inject ProcessorMessager processorMessager;

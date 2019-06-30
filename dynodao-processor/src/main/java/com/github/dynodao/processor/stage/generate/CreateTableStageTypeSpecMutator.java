@@ -10,7 +10,7 @@ import com.squareup.javapoet.CodeBlock;
 import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.ParameterSpec;
 import com.squareup.javapoet.ParameterizedTypeName;
-import com.squareup.javapoet.TypeSpec.Builder;
+import com.squareup.javapoet.TypeSpec;
 
 import javax.inject.Inject;
 import javax.lang.model.element.ExecutableElement;
@@ -51,7 +51,7 @@ class CreateTableStageTypeSpecMutator implements StageTypeSpecMutator {
     private final MethodSpec asRequestWithNoBody;
 
     @Inject CreateTableStageTypeSpecMutator(Processors processors) {
-        TypeElement interfaceType = processors.getTypeElement(InterfaceType.CREATE.getInterfaceClass());
+        TypeElement interfaceType = processors.getTypeElement(InterfaceType.CREATE_TABLE.getInterfaceClass());
         ExecutableElement load = processors.getMethodByName(interfaceType, "createTable");
         createTableWithNoBody = MethodSpec.methodBuilder(load.getSimpleName().toString())
                 .addAnnotation(Override.class)
@@ -65,7 +65,7 @@ class CreateTableStageTypeSpecMutator implements StageTypeSpecMutator {
     }
 
     @Override
-    public void mutate(Builder typeSpec, Stage stage) {
+    public void mutate(TypeSpec.Builder typeSpec, Stage stage) {
         if (isCreateTable(stage)) {
             MethodSpec asRequest = buildAsRequest(stage);
             typeSpec.addMethod(asRequest);
@@ -76,7 +76,7 @@ class CreateTableStageTypeSpecMutator implements StageTypeSpecMutator {
     }
 
     private boolean isCreateTable(Stage stage) {
-        return stage.isStagedBuilder() || stage.getInterfaceTypes().contains(InterfaceType.CREATE);
+        return stage.isStagedBuilder() || stage.getInterfaceTypes().contains(InterfaceType.CREATE_TABLE);
     }
 
     private MethodSpec buildAsRequest(Stage stage) {
